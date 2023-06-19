@@ -172,30 +172,30 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th class="border-bottom" scope="col">Page name</th>
-                                    <th class="border-bottom" scope="col">Page Views</th>
-                                    <th class="border-bottom" scope="col">Page Value</th>
+                                    <th class="border-bottom" scope="col">Group ID</th>
+                                    <th class="border-bottom" scope="col">Group Name</th>
+                                    <th class="border-bottom" scope="col">Parent ID</th>
                                     <th class="border-bottom" scope="col">Bounce rate</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th class="text-gray-900" scope="row">
-                                        /demo/admin/index.html
-                                    </th>
-                                    <td class="fw-bolder text-gray-500">
-                                        3,225
-                                    </td>
-                                    <td class="fw-bolder text-gray-500">
-                                        $20
-                                    </td>
-                                    <td class="fw-bolder text-gray-500">
-                                        <div class="d-flex">
-                                            <svg class="icon icon-xs text-danger me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                                            42,55%
-                                        </div>
-                                    </td>
-                                </tr>
+                                    {% for group in groups %}
+                                    <tr>                                        
+                                        <th class="text-gray-900" scope="row">
+                                            {{ group.groupID }}
+                                        </th>
+                                        <td class="fw-bolder text-gray-500">
+                                            {{ group.groupName }}
+                                        </td>
+                                        <td class="fw-bolder text-gray-500">
+                                            {{ group.parentID}}
+                                        </td>
+                                        <td class="fw-bolder text-gray-500">
+                                            {{ group.created}}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+    
                                 <tr>
                                     <th class="text-gray-900" scope="row">
                                         /demo/admin/forms.html

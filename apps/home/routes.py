@@ -7,13 +7,19 @@ from apps.home import blueprint
 from flask import render_template, request
 from flask_login import login_required
 from jinja2 import TemplateNotFound
+import json
 
 
-@blueprint.route('/index')
+@blueprint.route('/dashboard')
 @login_required
-def index():
+def dashboard():
+    f = open('response.json')
 
-    return render_template('home/index.html', segment='index')
+    data = json.load(f)
+
+    groups = data["groups"]
+
+    return render_template('home/dashboard.html', segment='dashboard', groups=groups)
 
 
 @blueprint.route('/<template>')
@@ -46,7 +52,7 @@ def get_segment(request):
         segment = request.path.split('/')[-1]
 
         if segment == '':
-            segment = 'index'
+            segment = 'dashboard'
 
         return segment
 
