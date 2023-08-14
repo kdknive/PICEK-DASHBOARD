@@ -10,8 +10,7 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from importlib import import_module
 
-
-db = SQLAlchemy()
+db = SQLAlchemy(session_options={"autoflush": False})
 login_manager = LoginManager()
 
 
@@ -21,15 +20,15 @@ def register_extensions(app):
 
 
 def register_blueprints(app):
-    for module_name in ('authentication', 'home'):
+    for module_name in ('authentication', 'home', 'scraper'):
         module = import_module('apps.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
-
 
 def configure_database(app):
 
     @app.before_first_request
     def initialize_database():
+
         try:
             db.create_all()
         except Exception as e:

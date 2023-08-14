@@ -1,0 +1,4 @@
+<option selected>Select Group</option>
+{% for group in groups %}
+    <option value='{"path": "{{ group.groupName }}", "parentID": "{{ group.groupID }}"}'>{{ group.groupName }}</option>
+{% endfor %}
